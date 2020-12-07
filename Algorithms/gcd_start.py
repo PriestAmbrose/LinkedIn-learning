@@ -5,6 +5,8 @@
 def gcd(a, b):
     max_value = max(a,b)
     min_value = min(a,b)
+    if (min_value == 0):
+        return max_value
     while (max_value % min_value != 0):
         temp = max_value
         max_value = min_value
