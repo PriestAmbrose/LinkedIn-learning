@@ -1,8 +1,8 @@
 # try out the Python queue functions
-
+from collections import deque
 
 # TODO: create a new empty deque object that will function as a queue
-queue = []
+queue = deque()
 
 # TODO: add some items to the queue
 queue.append(1)
@@ -14,6 +14,6 @@ queue.append(5)
 print(queue)
 
 # TODO: pop an item off the front of the queue
-queue.pop(0)
+queue.popleft()
 
 print(queue)
