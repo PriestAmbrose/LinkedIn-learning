@@ -48,10 +48,12 @@ class LinkedList(object):
     def deleteAt(self, idx):
         if idx > self.count-1:
             return
-        elif (self.count == 1):
-            head.set_nest(None)
+        elif self.count == 1:
+            head.set_next(None)
             self.count-=1
             return
+        elif idx == 0:
+            self.head = self.head.get_next()
         else:
             item = self.head
             while (idx > 1):
@@ -74,7 +76,7 @@ itemlist.insert(15)
 itemlist.insert(38)
 itemlist.insert(49)
 itemlist.insert(13)
-itemlist.insert(15)
+itemlist.insert(16)
 itemlist.dump_list()
 
 # exercise the list
@@ -83,7 +85,7 @@ print("Finding item: ", itemlist.find(13))
 print("Finding item: ", itemlist.find(78))
 
 #delete an item
-itemlist.deleteAt(3)
+itemlist.deleteAt(0)
 print("Item count: ", itemlist.get_count())
 print("Finding item: ", itemlist.find(38))
 itemlist.dump_list()
