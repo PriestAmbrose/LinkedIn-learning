@@ -24,5 +24,5 @@ except:
 hashtab2[2] = [42]
 
 # TODO: iterate the keys and values in the dictionary
-for key in hashtab2:
+for key, value in hashtab2.items():
     print(key, hashtab2[key])
