@@ -25,10 +25,10 @@ def partition(datavalues, first, last):
     done = False
     while not done:
         # TODO: advance the lower index
-        while datavalues[lower]<pivotvalue:
+        while datavalues[lower]<=pivotvalue and upper >=lower:
             lower+=1
         # TODO: advance the upper index
-        while datavalues[upper] > pivotvalue:
+        while datavalues[upper] >=pivotvalue and upper>=lower:
             upper-=1
         # TODO: if the two indexes cross, we have found the split point
         if lower > upper:
