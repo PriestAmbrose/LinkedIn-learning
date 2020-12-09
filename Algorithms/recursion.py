@@ -8,9 +8,7 @@ def power(num, pwr):
         return num*power(num,pwr-1)
 
 def factorial(num):
-    if num < 1:
-        return "no such factorial"
-    if num == 1:
+    if num == 0:
         return 1
     else:
         return num*factorial(num-1)
