@@ -14,5 +14,5 @@ for item in items:
     filter[item]=""
 
 # TODO: create a set from the resulting keys in the hashtable
-s=set(filter)
+s=set(filter.keys())
 print(s)
