@@ -1,5 +1,6 @@
 
 public abstract class PhoneCameraApp {
+	private ShareMethod  shareMethod;
 	
 	public PhoneCameraApp() {
 	}
@@ -14,7 +15,12 @@ public abstract class PhoneCameraApp {
 		System.out.println("I'm SAVING a picture");
 	}
 
-	public void share(ShareMethod sm) {
-		sm.share();
+	public void setShareMethod( ShareMethod sm){
+		shareMethod = sm;
 	}
+	public void share() {
+		shareMethod.share();
+	}
+
+
 }
