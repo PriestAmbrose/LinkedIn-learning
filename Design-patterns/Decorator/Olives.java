@@ -1,8 +1,7 @@
 
 
 public class Olives extends ToppingDecorator {
-	CrustPizza crustPizza;
-
+	
 	public Olives(CrustPizza crustPizza) {
 		this.crustPizza = crustPizza;
 	}

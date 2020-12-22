@@ -1,6 +1,5 @@
 public class Cheese extends ToppingDecorator {
-	CrustPizza crustPizza;
-
+	
 	public Cheese(CrustPizza crustPizza) {
 		this.crustPizza = crustPizza;
 	}
