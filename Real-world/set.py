@@ -1,0 +1,7 @@
+invite = set(['nestor','amanda', 'olivia'])
+print ('amanda' in invite)
+invite.add('verne')
+print(invite)
+invite.remove('amanda')
+print(invite)
+print(invite.pop())
