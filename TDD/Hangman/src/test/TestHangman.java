@@ -2,10 +2,20 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.Test;
+
+import main.Hangman;
+
 class TestHangman {
     
     @Test
     void test_alphabetCountInAWord(){
-        fail("Not yet implemented");
+        String word = "pizza";
+        char alphabet = 'a';
+
+        Hangman hangman = new Hangman();
+        int count = hangman.countAlphabet(word,alphabet);
+
+        assertEquals(1,count);
     }
 }
