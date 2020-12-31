@@ -94,4 +94,11 @@ public class TestHangman {
         String newClue = hangman.getClue("pizza",clue,'x');
         assertEquals("-----", newClue);
     }
+
+    @Test
+    public void test_whenInvalidGuessThenFetchClueThrowsException(){
+        assertThrows(IllegalArgumentException.class,
+            () -> hangman.getClue("pizza","-----", '1')
+            );
+    }
 }

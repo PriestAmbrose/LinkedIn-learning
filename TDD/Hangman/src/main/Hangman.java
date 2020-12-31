@@ -54,6 +54,9 @@ public class Hangman {
 
 
 	public String getClue(String string, String clue, char c) {
+		if (c >= 'A' && c <= 'Z') c+=32; // to shift ASCII code
+		if (c < 'a'|| c > 'z' ) throw new IllegalArgumentException();
+
 		String newClue="";
 		for (int i = 0; i<string.length();i++){
 			newClue += string.toCharArray()[i]==c?string.toCharArray()[i]:clue.toCharArray()[i];
