@@ -42,4 +42,17 @@ public class Hangman {
 		}
 
 	}
+
+
+	public String getClue() {
+		return null;
+	}
+
+
+	public void loadWords(String string) {
+	}
+
+
+	public void guess(char c) {
+	}
 }

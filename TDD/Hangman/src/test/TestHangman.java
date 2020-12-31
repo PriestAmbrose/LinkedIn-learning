@@ -54,4 +54,34 @@ public class TestHangman {
             assertTrue(usedWordsSet.add(word));
         }
     }
+
+
+    @Test
+
+    public void test_returnClueBeforeGuess(){
+        Random random = new Random ();
+        int requestedLength = random.nextInt(4)+4;
+        Hangman hangman = new Hangman();
+        hangman.loadWords();
+        String word = hangman.fetchWord(requestedLength);
+        String clue = "";
+        for (int i=0; i<word.length();i++) clue+="_";
+        assertEquals(clue, hangman.getClue());
+    }
+
+    @Test
+    public void test_returnClueIfGuessedCorrectly(){
+        Hangman hangman = new Hangman();
+        hangman.loadWords("pizza");
+        hangman.guess('z');
+        assertEquals("__zz_", hangman.getClue());
+    }
+
+    @Test
+    public void test_returnClueIfGuessedInCorrectly(){
+        Hangman hangman = new Hangman();
+        hangman.loadWords("pizza");
+        hangman.guess('p');
+        assertEquals("_____", hangman.getClue());
+    }
 }
