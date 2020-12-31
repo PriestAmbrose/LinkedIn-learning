@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Random;
+
 import org.junit.Test;
 
 import main.Hangman;
@@ -35,5 +37,7 @@ public class TestHangman {
         int requestedLength = random.nextInt(6) +5;
         Hangman hangman = new Hangman();
         String word = hangman.fetchWord(requestedLength);
+
+        assertTrue(requestedLength == word.length());
     }
 }

@@ -16,6 +16,14 @@ public class Hangman {
 	}
 
 	public String fetchWord(int requestedLength) {
-		return null;
+		switch(requestedLength) {
+			case 5: return "pizza";
+			case 6: return "cheese";
+			case 7: return "chicken";
+			case 8: return "tomato";
+			case 9: return "pineapple";
+			case 10: return "mozarella";
+			default: return "";
+		}
 	}
 }
