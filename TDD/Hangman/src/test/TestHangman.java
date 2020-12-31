@@ -101,4 +101,12 @@ public class TestHangman {
             () -> hangman.getClue("pizza","-----", '1')
             );
     }
+
+    @Test
+    public void test_whenInvalidGuessThenFetchClueThrowsExceptionWithMessage(){
+        Exception e = assertThrows(IllegalArgumentException.class,
+            () -> hangman.getClue("pizza","-----", '1')
+            );
+        assertEquals("Invalid character",e.getMessage());
+    }
 }
