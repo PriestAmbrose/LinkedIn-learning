@@ -44,15 +44,20 @@ public class Hangman {
 	}
 
 
-	public String getClue() {
-		return null;
+	public String getClue(String word) {
+		StringBuilder clue = new StringBuilder();
+		for (int i=0;i<word.length();i++){
+			clue.append("-");
+		}
+		return clue.toString();
 	}
 
 
-	public void loadWords(String string) {
-	}
-
-
-	public void guess(char c) {
+	public String getClue(String string, String clue, char c) {
+		String newClue="";
+		for (int i = 0; i<string.length();i++){
+			newClue += string.toCharArray()[i]==c?string.toCharArray()[i]:clue.toCharArray()[i];
+		}
+		return newClue;
 	}
 }

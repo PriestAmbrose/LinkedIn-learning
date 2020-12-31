@@ -65,23 +65,23 @@ public class TestHangman {
         hangman.loadWords();
         String word = hangman.fetchWord(requestedLength);
         String clue = "";
-        for (int i=0; i<word.length();i++) clue+="_";
-        assertEquals(clue, hangman.getClue());
+        for (int i=0; i<word.length();i++) clue+="-";
+        assertEquals(clue, hangman.getClue(word));
     }
 
     @Test
     public void test_returnClueIfGuessedCorrectly(){
         Hangman hangman = new Hangman();
-        hangman.loadWords("pizza");
-        hangman.guess('z');
-        assertEquals("__zz_", hangman.getClue());
+        String clue = hangman.getClue("pizza");
+        String newClue = hangman.getClue("pizza",clue,'z');
+        assertEquals("--zz-", newClue);
     }
 
     @Test
     public void test_returnClueIfGuessedInCorrectly(){
         Hangman hangman = new Hangman();
-        hangman.loadWords("pizza");
-        hangman.guess('p');
-        assertEquals("_____", hangman.getClue());
+        String clue = hangman.getClue("pizza");
+        String newClue = hangman.getClue("pizza",clue,'x');
+        assertEquals("-----", newClue);
     }
 }
