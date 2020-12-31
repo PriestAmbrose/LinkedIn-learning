@@ -6,6 +6,7 @@ import java.util.*;
 public class Hangman {
 
 	Set<String> usedWordsSet = new HashSet<>();
+	List<String> wordsList = new ArrayList<>();
 
 
 	public int countAlphabet(String word, char alphabet) {
@@ -17,32 +18,28 @@ public class Hangman {
 		return result;
 	}
 	
-	public String fetchWord(){
-		return "pizza";
+	
+	public String fetchWord(int requestedLength) {
+		
+		for (String result : wordsList){
+			if(result.length() != requestedLength) continue;
+			else if (usedWordsSet.add(result)) return result;
+		};
+		
+		return null;
 	}
 
-	public String fetchWord(int requestedLength) {
-		/*switch(requestedLength) {
-			case 5: return "pizza";
-			case 6: return "cheese";
-			case 7: return "chicken";
-			case 8: return "tomato";
-			case 9: return "pineapple";
-			case 10: return "mozarella";
-			default: return "";
-		}*/
-
-		String result = null;
+	public void loadWords(){
+		String result;
 		try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Grenada PC 07\\Desktop\\CCA\\LinkedIn-learning\\TDD\\Hangman\\src\\WordSource.txt"))){
 			while ((result = br.readLine()) != null) {
-				if (result.length()!=requestedLength) continue;
-				else if (usedWordsSet.add(result)) break;
+				wordsList.add(result);
 			}
 		} catch (FileNotFoundException e){
 			e.printStackTrace();
 		} catch (IOException e){
 			e.printStackTrace();
 		}
-		return result;
+
 	}
 }
