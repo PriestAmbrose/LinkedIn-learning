@@ -2,7 +2,7 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Random;
+import java.util.*;
 
 import org.junit.Test;
 
@@ -39,5 +39,23 @@ public class TestHangman {
         String word = hangman.fetchWord(requestedLength);
 
         assertTrue(requestedLength == word.length());
+    }
+
+    @Test 
+
+    public void test_uniquenesssOfFetchWord() {
+        Random random = new Random ();
+        int requestedLength = 0;
+        Set<String> usedWordsSet = new HashSet<>();
+        int round =0;
+        String word = null;
+        Hangman hangman = new Hangman();
+
+        while (round<100) {
+            requestedLength = random.nextInt(6)+5;
+            word = hangman.fetchWord(requestedLength);
+            round++;
+            assertTrue(usedWordsSet.add(word));
+        }
     }
 }
