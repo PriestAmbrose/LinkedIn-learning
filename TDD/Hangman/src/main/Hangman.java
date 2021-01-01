@@ -91,4 +91,14 @@ public class Hangman {
 		}
 		Trials--;
 	}
+
+
+	public Boolean StoreDB(String word, double score) {
+		return null;
+	}
+
+
+	public double retrieveScore(String word) {
+		return 0;
+	}
 }

@@ -154,4 +154,26 @@ public class TestHangman {
         hangman.Scores =0;
         hangman.Trials=hangman.MAX_TRIALS;
     }*/
+
+    @Test
+    public void test_ScoreDbStoresWordAndScore(){
+        String word="pizza";
+        double score = (double)hangman.MAX_TRIALS/word.length();
+        assertTrue(hangman.StoreDB(word,score));
+    }
+
+    @Test
+    public void test_RetrieveFromDbScoreForExistingWord(){
+        String word = "pizza";
+        hangman.StoreDB(word,(double)hangman.MAX_TRIALS/word.length());
+        double score = hangman.retrieveScore(word);
+        assertEquals((double)hangman.MAX_TRIALS/word.length(), score,0.04);
+    }
+
+    @Test
+    public void test_RetrieveFromDbScoreForNonExistingWord(){
+        String word = "pineapple";
+        hangman.StoreDB("pizza",(double)hangman.MAX_TRIALS/"pizza".length());
+        assertEquals(0, hangman.retrieveScore(word));
+    }
 }
