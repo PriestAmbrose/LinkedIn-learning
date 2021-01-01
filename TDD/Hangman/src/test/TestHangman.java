@@ -115,7 +115,7 @@ public class TestHangman {
     @Test
     public void test_TrialsBeforeAGuess(){
         
-        assertEquals(10,hangman.getTrials());
+        assertEquals(hangman.MAX_TRIALS, hangman.getTrials());
     }
 
     @Test
@@ -126,7 +126,7 @@ public class TestHangman {
     @Test
     public void test_TrialsAfterFirstCorrectGuess(){
         hangman.guess(word,'p');
-        assertEquals(9, hangman.getTrials());
+        assertEquals(hangman.MAX_TRIALS-1, hangman.getTrials());
     }
 
     @Test

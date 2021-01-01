@@ -9,7 +9,7 @@ public class Hangman {
 	public Set<String> usedWordsSet = new HashSet<>();
 	public List<String> wordsList = new ArrayList<>();
 	public final int MAX_TRIALS = 10;
-	public int Trials = MAX_TRIALS;
+	public int Trials = 0;
 	public float Scores = 0;
 	String clue = "";
 
@@ -25,7 +25,7 @@ public class Hangman {
 	
 	
 	public String fetchWord(int requestedLength) {
-		
+		Trials = MAX_TRIALS;
 		for (String result : wordsList){
 			if(result.length() != requestedLength) continue;
 			else if (usedWordsSet.add(result)){
@@ -86,7 +86,7 @@ public class Hangman {
 
 	public void guess(String word, char guess) {
 		if(word.indexOf(guess) != -1 && clue.indexOf(guess)==-1 ) {
-			Scores+=MAX_TRIALS/word.length();
+			Scores+=(double)MAX_TRIALS/word.length();
 			clue = getClue(word, clue, guess);
 		}
 		Trials--;
