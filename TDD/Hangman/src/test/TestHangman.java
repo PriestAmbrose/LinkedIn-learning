@@ -4,9 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.*;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+
 
 import main.Hangman;
 
@@ -15,17 +14,24 @@ public class TestHangman {
     static Random random;
     static Hangman hangman;
     static int requestedLength;
+    static String word;
 
     @BeforeClass
     public static void setUpClass() {
         random = new Random();
         hangman = new Hangman();
-        hangman.loadWords();
+        
     }
 
     @Before
     public void setupTest(){
-        requestedLength = random.nextInt(4)+4;
+        hangman.Scores =0;
+        hangman.Trials=hangman.MAX_TRIALS;
+        requestedLength = 5;//random.nextInt(4)+4;
+        hangman.wordsList.clear();
+        hangman.usedWordsSet.clear();
+        hangman.loadWords();
+        word = hangman.fetchWord(requestedLength);
     }
 
     @Test
@@ -69,11 +75,7 @@ public class TestHangman {
 
 
     @Test
-
     public void test_returnClueBeforeGuess(){
-        
-    
-        String word = hangman.fetchWord(requestedLength);
         String clue = "";
         for (int i=0; i<word.length();i++) clue+="-";
         assertEquals(clue, hangman.getClue(word), "wrong clue");
@@ -109,4 +111,47 @@ public class TestHangman {
             );
         assertEquals("Invalid character",e.getMessage());
     }
+
+    @Test
+    public void test_TrialsBeforeAGuess(){
+        
+        assertEquals(10,hangman.getTrials());
+    }
+
+    @Test
+    public void test_ScoresBeforeAGuess(){
+        assertEquals(0,hangman.getScores(),0.04);
+    }
+
+    @Test
+    public void test_TrialsAfterFirstCorrectGuess(){
+        hangman.guess(word,'p');
+        assertEquals(9, hangman.getTrials());
+    }
+
+    @Test
+    public void test_ScoresAfterFirstCorrectGuess(){
+        hangman.guess(word,'p');
+        assertEquals(2,hangman.getScores(),0.04);
+    }
+
+    @Test 
+    public void test_TrialsAfterSecondCorrectGuess(){
+        hangman.guess(word,'p');
+        hangman.guess(word,'i');
+        assertEquals(8, hangman.getTrials());
+    }
+
+    @Test
+    public void test_ScoresAfterSecondCorrectGuess(){
+        hangman.guess(word,'p');
+        hangman.guess(word,'i');
+        assertEquals(4, hangman.getScores(),0.04);
+    }
+
+    /*@AfterEach
+    public static void CleanUpClass(){
+        hangman.Scores =0;
+        hangman.Trials=hangman.MAX_TRIALS;
+    }*/
 }
