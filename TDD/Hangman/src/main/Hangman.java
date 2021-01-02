@@ -6,12 +6,19 @@ import java.util.*;
 
 public class Hangman {
 
-	public Set<String> usedWordsSet = new HashSet<>();
-	public List<String> wordsList = new ArrayList<>();
+	public Set<String> usedWordsSet = new HashSet<String>();
+	public List<String> wordsList = new ArrayList<String>();
 	public final int MAX_TRIALS = 10;
 	public int Trials = 0;
 	public float Scores = 0;
 	String clue = "";
+
+	ExternalDBMock Db;
+
+
+	public Hangman(ExternalDBMock mockObject) {
+		Db = mockObject;
+	}
 
 
 	public int countAlphabet(String word, char alphabet) {
@@ -40,10 +47,13 @@ public class Hangman {
 
 	public void loadWords(){
 		String result;
-		try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Grenada PC 07\\Desktop\\CCA\\LinkedIn-learning\\TDD\\Hangman\\src\\Pizza.txt"))){
+		try {
+			FileReader fl = new FileReader("C:\\Users\\Grenada PC 07\\Desktop\\CCA\\LinkedIn-learning\\TDD\\Hangman\\src\\Pizza.txt");
+			BufferedReader br = new BufferedReader(fl);
 			while ((result = br.readLine()) != null) {
 				wordsList.add(result);
 			}
+			br.close();
 		} catch (FileNotFoundException e){
 			e.printStackTrace();
 		} catch (IOException e){
@@ -94,11 +104,11 @@ public class Hangman {
 
 
 	public Boolean StoreDB(String word, double score) {
-		return null;
+		return Db.StoreDb(word, score);
 	}
 
 
 	public double retrieveScore(String word) {
-		return 0;
+		return Db.retrieveScore(word);
 	}
 }
