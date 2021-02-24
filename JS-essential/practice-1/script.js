@@ -6,6 +6,9 @@ const book = {
         author: "Greg Johnson",
         title:"Gremlins",
         year: 1998
+    },
+    paint: function(color){
+        this.color=color
     }
 };
 const phone = {
