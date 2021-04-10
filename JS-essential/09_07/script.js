@@ -99,7 +99,7 @@ const backpackList = backpackObjectArray.map((backpack) => {
     //const formtext = strap.dataset.side;
     //form.innerText="New "+formtext + " length";
     button.addEventListener("click", (e)=>{
-      strap.querySelector("span").innerText= form.elements.item(0).value + " inches";
+      strap.querySelector("span").innerText= form.querySelector('input').value + " inches";
     })
   }
 
