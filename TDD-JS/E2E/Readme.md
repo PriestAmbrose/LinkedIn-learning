@@ -6,6 +6,7 @@ npm install --save-dev supertest
 npm install --save-dev regenerator-runtime
 npm install mongodb
 npm install --save-dev chai-exclude
+npm install --save-dev sinon
 `
 create .babelrc
 Inside it:

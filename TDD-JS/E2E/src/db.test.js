@@ -6,7 +6,7 @@ describe('getUserByUsername',  ()=>{
 
     afterEach('reset the database', async ()=>{
         await resetDatabase();
-    })
+    });
     it('get the correct user from othe database given a usernam',async ()=>{
         
         const fakeData = [{
@@ -32,6 +32,30 @@ describe('getUserByUsername',  ()=>{
         }
 
         expect(actual).excludingEvery('_id').to.deep.equal(expected);
+        expect(finalDBState).excludingEvery('_id').to.deep.equal(fakeData); //final db is equal to initial
+
+    });
+
+    it('returns null when the user is not found from database',async()=>{
+        const fakeData = [{
+            id: '123',
+            username :'abc',
+            email: 'abc@gmail.com',
+        },{
+            id: '124',
+            username: 'wrong',
+            email: 'wrong@wrong.com',
+        }];
+
+        await setDatabaseData('users',fakeData);
+      
+        const actual  = await getUserByUsername('absent');
+        const finalDBState  = await getDatabaseData('users');
+        
+        
+        const expected = null;
+
+        expect(actual).to.equal(expected);
         expect(finalDBState).excludingEvery('_id').to.deep.equal(fakeData); //final db is equal to initial
 
     });

@@ -16,5 +16,10 @@ export const getUserByUsername = async username => {
     const db = client.db('TEST_DB');
     const result = await db.collection('users').findOne({username});
     client.close();
+    //console.log('null test returns now', result, username);
     return result;
+}
+
+export default{
+    getUserByUsername,
 }
