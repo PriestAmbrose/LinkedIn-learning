@@ -50,13 +50,9 @@ describe('getUserByUsername',  ()=>{
         await setDatabaseData('users',fakeData);
       
         const actual  = await getUserByUsername('absent');
-        const finalDBState  = await getDatabaseData('users');
-        
-        
-        const expected = null;
-
-        expect(actual).to.equal(expected);
-        expect(finalDBState).excludingEvery('_id').to.deep.equal(fakeData); //final db is equal to initial
+       
+        expect(actual).to.be.null;
+       
 
     });
 })

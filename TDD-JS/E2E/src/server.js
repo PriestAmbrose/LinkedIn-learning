@@ -10,7 +10,7 @@ app.get('/users/:username', async (req,res)=>{
         
         
         if(!user){
-            res.status(404).json(user);
+            res.status(404).send();
         } else {
             res.json(user);
         }

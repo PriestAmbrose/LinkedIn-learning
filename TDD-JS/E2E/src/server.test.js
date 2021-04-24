@@ -50,8 +50,7 @@ describe('GEt /users/:username', ()=>{
 
         await request(app).get('/users/absent')   // how rou server behaves
             .expect(404)
-            .expect('Content-Type',/json/)
-            .expect(null);
+           
 
         expect(stub.getCall(0).args[0]).to.equal('absent');
 
