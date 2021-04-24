@@ -27,34 +27,34 @@ describe('GEt /users/:username', ()=>{
 
     });
 
-    it('sends a correct response whenever is error', async ()=>{
-        const fakeError = {message:'something went wrong!'};
-        const stub = sinon.stub(db,'getUserByUsername')
-            .throws(fakeError);
+    // it('sends a correct response whenever is error', async ()=>{
+    //     const fakeError = {message:'something went wrong!'};
+    //     const stub = sinon.stub(db,'getUserByUsername')
+    //         .throws(fakeError);
 
-        await request(app).get('/users/abc')
-            .expect(500)
-            .expect('Content-Type',/json/)
-            .expect(fakeError);
+    //     await request(app).get('/users/abc')
+    //         .expect(500)
+    //         .expect('Content-Type',/json/)
+    //         .expect(fakeError);
 
-        stub.restore();
-    });
+    //     stub.restore();
+    // });
 
     
 
-    it('returns the appropriate response when the user is not found', async ()=>{
+    // it('returns the appropriate response when the user is not found', async ()=>{
       
-        const stub = sinon
-            .stub(db,'getUserByUsername')
-            .resolves(null);
+    //     const stub = sinon
+    //         .stub(db,'getUserByUsername')
+    //         .resolves(null);
 
-        await request(app).get('/users/absent')   // how rou server behaves
-            .expect(404)
+    //     await request(app).get('/users/absent')   // how rou server behaves
+    //         .expect(404)
            
 
-        expect(stub.getCall(0).args[0]).to.equal('absent');
+    //     expect(stub.getCall(0).args[0]).to.equal('absent');
 
-        stub.restore();
+    //     stub.restore();
 
-    });
+    // });
 });

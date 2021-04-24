@@ -36,23 +36,23 @@ describe('getUserByUsername',  ()=>{
 
     });
 
-    it('returns null when the user is not found from database',async()=>{
-        const fakeData = [{
-            id: '123',
-            username :'abc',
-            email: 'abc@gmail.com',
-        },{
-            id: '124',
-            username: 'wrong',
-            email: 'wrong@wrong.com',
-        }];
+    // it('returns null when the user is not found from database',async()=>{
+    //     const fakeData = [{
+    //         id: '123',
+    //         username :'abc',
+    //         email: 'abc@gmail.com',
+    //     },{
+    //         id: '124',
+    //         username: 'wrong',
+    //         email: 'wrong@wrong.com',
+    //     }];
 
-        await setDatabaseData('users',fakeData);
+    //     await setDatabaseData('users',fakeData);
       
-        const actual  = await getUserByUsername('absent');
+    //     const actual  = await getUserByUsername('absent');
        
-        expect(actual).to.be.null;
+    //     expect(actual).to.be.null;
        
 
-    });
+    // });
 })
