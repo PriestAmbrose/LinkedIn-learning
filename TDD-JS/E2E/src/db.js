@@ -7,7 +7,7 @@ const DB_NAME = process.env.NODE_ENV === 'test'
 
 export const getUserByUsername = async username => {
     const client = await MongoClient.connect(
-        'mongodb://localhost:27017/${DB_NAME}',
+        `mongodb://localhost:27017/${DB_NAME}`,
         {
             useNewUrlParser: true,
             useUnifiedTopology: true
