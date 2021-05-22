@@ -24,4 +24,11 @@ console.log(warrior,warrior3);
 var warrior;//declaration
 var warrior3 ;
 
-console.log(warrior4)
+console.log(warrior4);
+
+const warriors = ["asdf", "asdf", "saldfkj", "sldfkj"];
+const f = ()=>{
+    console.log(warriors);
+
+}
+f();
