@@ -1,6 +1,7 @@
 'use strict';
-let clicks = {};
+
 function updateClicks(){
+  let clicks = {};
   let button; 
   const reportClicks = (menu)=>{
     button =  menu.id;
