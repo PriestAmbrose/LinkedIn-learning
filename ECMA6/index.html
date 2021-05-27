@@ -23,11 +23,18 @@
         
         for (let i=0;i<5;i++){
             div = document.createElement("div");
+            div.innerText=i;
+            console.log(i);
+            
+
             div.onclick=function(){
-                alert("this box is #"+i);
+                alert("this box is #" + i + " number");
             }
-            box.appendChild(div);
+
+           box.appendChild(div);
         }
+
+        console.log("the i is accessible from outside of the loop , when it finish and is equal to" +i);
         </script>
     </body>
 
