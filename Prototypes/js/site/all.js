@@ -457,34 +457,10 @@
       console.log(dataObject);
 
       if (dataObject.category === 'arrangement') {
-        newItem = {
-          type: 'floral',
-          storage: 'cool',
-          name: dataObject.itemname,
-          vase: dataObject.vasetype,
-          quantity: dataObject.qty,
-          logItem: function(){
-            console.log('%c'+this.name, 'font-weight: bold');
-            for (let prop in this){
-              console.log(' ', prop, ': ', this[prop]);
-            }
-          }
-        }
+        newItem=new Arrangement(dataObject.itemname,dataObject.vasetype, dataObject.qty);
 
       } else if (dataObject.category === 'live') {
-        newItem = {
-          type: 'floral',
-          storage: 'warm',
-          name: dataObject.itemname,
-          pot: dataObject.pottype,
-          quantity: dataObject.qty,
-          logItem: function(){
-            console.log('%c'+this.name, 'font-weight: bold');
-            for (let prop in this){
-              console.log(' ', prop, ': ', this[prop]);
-            }
-          }
-        }
+        newItem =new Live(dataObject.itemname,dataObject.pottype, dataObject.qty)
 
       } else if (dataObject.category === 'bouquet') {
         if ($.cookie('bouquetCount')) {
@@ -492,20 +468,7 @@
         } else {
           $.cookie('bouquetCount', 1)
         }
-        newItem = {
-          type: 'floral',
-          storage: 'cool',
-          name: dataObject.category,
-          vase: dataObject.vasetype,
-          flowers: {},
-          logItem: function(){
-            console.log('%c'+this.name, 'font-weight: bold');
-            for (let prop in this){
-              console.log(' ', prop, ': ', this[prop]);
-            }
-          }
-
-        }
+        newItem = new Bouqet(dataObject.itemname, dataObject.vasetype);
 
         for (item in dataObject) {
           // if item starts with 'qty' and has a value greater than 0
@@ -518,16 +481,14 @@
             dataObject['color' + stemType] !== '---') {
               // add new item, specifying name, quantity, and color
               let stemName = dataObject['color' + stemType];
-              newItem.flowers[key]={};
-              newItem.flowers[key][stemName]=dataObject[item];
-              newItem.flowers[key].type = 'floral';
+              newItem.flowers.addStem(key, dataObject[item], stemName);
+              // newItem.flowers[key]={};
+              // newItem.flowers[key][stemName]=dataObject[item];
+              // newItem.flowers[key].type = 'floral';
 
             } else {
               // add new item specifying only name and quantity
-              newItem.flowers[key]={
-                Default: dataObject[item],
-                type: 'floral'
-              }
+              newItem.flowers.addStem(key, dataObject[item]);
 
             }
           }
@@ -645,4 +606,60 @@
       });
     }
   };
+  function Arrangement(name, vase, quantity=1){
+    this.type='floral';
+    this.storage='cool';
+    this.name = name;
+    this.vase =vase;
+    this.quantity=quantity;
+    this.logItem = function(){
+      console.log('%c'+this.name, 'font-weight: bold');
+      for (let prop in this){
+        console.log(' ', prop, ': ', this[prop]);
+      }
+    };
+  }
+
+  function Live(name, pot, quantity=1){
+    this.type='floral';
+    this.storage='warm';
+    this.name = name;
+    this.pot = pot;
+    this.quantity=quantity;
+    this.logItem = function(){
+      console.log('%c'+this.name, 'font-weight: bold');
+      for (let prop in this){
+        console.log(' ', prop, ': ', this[prop]);
+      }
+    };
+  }
+
+  function Bouqet(name, vase){
+    this.type='floral';
+    this.storage='cool';
+    this.name = name;
+    this.vase =vase;
+    this.logItem = function(){
+      console.log('%c'+this.name, 'font-weight: bold');
+      for (let prop in this){
+        console.log(' ', prop, ': ', this[prop]);
+      }
+    };
+
+    this.flowers = {
+      addStem: function(name, quantity=1, color='Default'){
+        this[name] = new Flower(quantity,color);
+      }
+    }
+  }
+
+  function Flower(quantity, color){
+    this[color] = quantity;
+    this.logItem = function(){
+      console.log('%c'+this.name, 'font-weight: bold');
+      for (let prop in this){
+        console.log(' ', prop, ': ', this[prop]);
+      }
+    };
+  }
 })();
