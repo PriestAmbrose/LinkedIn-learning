@@ -457,14 +457,48 @@
       console.log(dataObject);
 
       if (dataObject.category === 'arrangement') {
+        newItem = {
+          type: 'floral',
+          storage: 'cool',
+          name: dataObject.itemname,
+          vase: dataObject.vasetype,
+          quantity: dataObject.qty,
+          logItem: function(){
+            console.log('%c'+this.name, 'font-weight: bold');
+            for (let prop in this){
+              console.log(' ', prop, ': ', this[prop]);
+            }
+          }
+        }
 
       } else if (dataObject.category === 'live') {
+        newItem = {
+          type: 'floral',
+          storage: 'warm',
+          name: dataObject.itemname,
+          pot: dataObject.pottype,
+          quantity: dataObject.qty,
+          logItem: function(){
+            console.log('%c'+this.name, 'font-weight: bold');
+            for (let prop in this){
+              console.log(' ', prop, ': ', this[prop]);
+            }
+          }
+        }
 
       } else if (dataObject.category === 'bouquet') {
         if ($.cookie('bouquetCount')) {
           $.cookie('bouquetCount', parseInt($.cookie('bouquetCount')) + 1);
         } else {
           $.cookie('bouquetCount', 1)
+        }
+        newItem = {
+          type: 'floral',
+          storage: 'cool',
+          name: dataObject.category,
+          vase: dataObject.vasetype,
+          flowers: {},
+
         }
 
         for (item in dataObject) {
@@ -478,15 +512,24 @@
             dataObject['color' + stemType] !== '---') {
               // add new item, specifying name, quantity, and color
               let stemName = dataObject['color' + stemType];
+              newItem.flowers[key]={};
+              newItem.flowers[key][stemName]=dataObject[item];
+              newItem.flowers[key].type = 'floral';
 
             } else {
               // add new item specifying only name and quantity
+              newItem.flowers[key]={
+                Default: dataObject[item],
+                type: 'floral'
+              }
 
             }
           }
         }
+        newItem.logItem();
       }
-
+    
+      
 
       if ($.cookie('basket-data')) {
         let cookieData = $.cookie('basket-data');
