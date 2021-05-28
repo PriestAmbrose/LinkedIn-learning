@@ -1,11 +1,22 @@
-let getSpacePeople = ()=>
-fetch("http://api.open-notify.org/astros.json")
-    .then((res)=>res.json());
+const delay = (seconds)=>
+    new Promise((resolves)=>
+    setTimeout(resolves,seconds*1000)
+);
+    const countToFive  = async ()=>{
+        console.log("zero seconds");
+        await delay(1);
+        console.log("one second");
+        await delay(1);
+        console.log("one second");
+        await delay(2);
+        console.log("one second");
+        await delay(1);
+        console.log("one second");
+        await delay(1);
+        console.log("one second");
+        await delay(4);
+        console.log("one second");
+    };
 
-
-    let spaceName = ()=>
-    getSpacePeople().then((json)=>json.people)
-    .then((people)=>people.map((p)=>p.name))
-    .then((names)=>names.join(", "));
-
-    spaceName().then(console.log);
+    countToFive();
+    
