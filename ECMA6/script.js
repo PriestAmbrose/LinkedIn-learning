@@ -3,4 +3,9 @@ fetch("http://api.open-notify.org/astros.json")
     .then((res)=>res.json());
 
 
-    getSpacePeople().then(data => console.log(data));
+    let spaceName = ()=>
+    getSpacePeople().then((json)=>json.people)
+    .then((people)=>people.map((p)=>p.name))
+    .then((names)=>names.join(", "));
+
+    spaceName().then(console.log);
