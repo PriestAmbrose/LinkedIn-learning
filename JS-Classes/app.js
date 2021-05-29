@@ -23,6 +23,7 @@ class Car {
 const cx5 = new Car(4, 'V6', 'grey');
 const civic = new Car(2,'v4', 'blue')
 console.log(cx5);
+console.log(civic)
 console.log(cx5.carStats());
 console.log(Car.totalDoors(cx5, civic));
 
