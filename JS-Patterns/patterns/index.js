@@ -7,9 +7,9 @@ class Car {
     }
 }
 
-class carFactory {
-    createCar(type){
-        switch(type){
+class CarFactory {
+    createCar(model){
+        switch(model){
             case 'civic':
                 return new Car(4, 'V6', 'grey');
             case 'honda':
@@ -20,7 +20,39 @@ class carFactory {
     }
 }
 
-const factory = new carFactory();
-const myHonda  = factory.createCar('honda');
+class SUV {
+    constructor(doors,engine,color){
+        this.doors=doors;
+        this.engine =engine;
+        this.color =color;
+        
+    }
+}
 
-console.log(myHonda);
+class SuvFactory {
+    createCar(model){
+        switch(model){
+            case 'cx5':
+                return new SUV(4, 'V6', 'grey');
+            case 'sante fe':
+                return new SUV(4, 'V8', 'red');
+
+            
+        }
+    }
+}
+
+const carfactory = new CarFactory();
+const suvFactory = new SuvFactory();
+const autoManufacturer = (type, model)=>{
+    switch(type){
+        case 'car':
+            return carFactory.createCar(model);
+        case 'suv':
+            return suvFactory.createCar(model);
+    }
+}
+
+const cx5  = autoManufacturer('suv','cx5');
+
+console.log(cx5);
