@@ -45,7 +45,7 @@ class SuvFactory {
 
 let carMixin = {
     revEngine(){
-        console.log(`The ${this.engine} is doing`);
+        console.log(`The ${this.engine} is doing OK`);
     }
 }
 
