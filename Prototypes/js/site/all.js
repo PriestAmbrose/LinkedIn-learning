@@ -608,57 +608,113 @@
   };
   
 
-  function Item(){};
-  Item.prototype.type = 'floral';
-  Item.prototype.logItem = function(){
-    console.log('%c'+this.name, 'font-weight: bold');
-    for (let prop in this){
-      console.log(' ', prop, ': ', this[prop]);
-    }
-  };
+  // function Item(){};
+  // Item.prototype.type = 'goods';
+  // Item.prototype.logItem = function(){
+  //   console.log('%c'+this.name, 'font-weight: bold');
+  //   for (let prop in this){
+  //     console.log(' ', prop, ': ', this[prop]);
+  //   }
+  // };
 
-  function Live(name, pot, quantity=1){
-    this.name = name;
-    this.pot = pot;
-    this.quantity=quantity;
+  class Item {
+    constructor(){
+      this.type='goods';
+    }
+    logItem (){
+        console.log('%c'+this.name, 'font-weight: bold');
+        for (let prop in this){
+          console.log(' ', prop, ': ', this[prop]);
+        }
+    }
+  }
+  // function Live(name, pot, quantity=1){
+  //   this.name = name;
+  //   this.pot = pot;
+  //   this.quantity=quantity;
     
-  };
-  Live.prototype = new Item();
-  Live.prototype.storage = 'warm';
+  // };
+  // Live.prototype = new Item();
+  // Live.prototype.storage = 'warm';
+
+
+  class Live extends Item {
+    constructor(name, pot, quantity=1){
+      super();
+      this.name =name;
+      this.pot = pot;
+      this.quantity=quantity;
+      this.storage = 'warm';
+    }
+  }
  
   
   
 
-  function Flower(quantity, color){
-    this[color] = quantity;
-  }
+  // function Flower(quantity, color){
+  //   this[color] = quantity;
+  // }
 
-  Flower.prototype = new Item();
+  // Flower.prototype = new Item();
  
-  function Cut(){};
-  Cut.prototype = new Item();
-  Cut.prototype.storage = 'cool';
+  class Flower extends Item{
+    constructor(quantity, color){
+      super();
+      this[color]=quantity;
+    }
+  }
+  // function Cut(){};
+  // Cut.prototype = new Item();
+  // Cut.prototype.storage = 'cool';
 
-  function Arrangement(name, vase, quantity=1){
-    this.name = name;
-    this.vase =vase;
-    this.quantity=quantity;
-    
-    };
-    
-    Arrangement.prototype = new Cut();
-    
-
-  function Bouqet(name, vase){
-    this.name = name;
-    this.vase =vase;
+  class Cut extends Item {
+    constructor(name, vase) {
+      super();
+      this.name = name;
+      this.vase = vase;
+      this.storage = 'cool';
+    }
   }
 
-  Bouqet.prototype = new Cut();
-  Bouqet.prototype.flowers = {
-    addStem: function(name, quantity=1, color='Default'){
-      this[name] = new Flower(quantity,color);
+  // function Arrangement(name, vase, quantity=1){
+  //   this.name = name;
+  //   this.vase =vase;
+  //   this.quantity=quantity;
+    
+  //   };
+    
+  //   Arrangement.prototype = new Cut();
+
+  class Arrangement extends Cut {
+    constructor(name, vase, quantity =1){
+      super(name, vase);
+      this.quantity = quantity;
+
     }
-  };
+  }
+    
+
+  // function Bouqet(name, vase){
+  //   this.name = name;
+  //   this.vase =vase;
+  // }
+
+  // Bouqet.prototype = new Cut();
+  // Bouqet.prototype.flowers = {
+  //   addStem: function(name, quantity=1, color='Default'){
+  //     this[name] = new Flower(quantity,color);
+  //   }
+  // };
+
+  class Bouqet extends Cut {
+    constructor(name, vase){
+      super(name, vase);
+      this.flowers ={
+        addStem: function(name, quantity=1, color='Default'){
+              this[name] = new Flower(quantity,color);
+          }
+      }
+    }
+  }
 
 })();
