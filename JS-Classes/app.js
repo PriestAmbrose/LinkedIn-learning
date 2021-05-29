@@ -1,3 +1,7 @@
+
+
+
+sayHi();
 class Car {
     constructor(doors, engine, color){
         this.doors = doors;
@@ -13,3 +17,7 @@ class Car {
 const cx5 = new Car(4, 'V6', 'grey');
 console.log(cx5);
 console.log(cx5.carStats());
+
+function sayHi(){
+    return console.log("Helllo this function can be called anywerher");
+}
