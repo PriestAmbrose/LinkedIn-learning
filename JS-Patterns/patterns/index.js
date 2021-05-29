@@ -42,7 +42,14 @@ class SuvFactory {
     }
 }
 
-const carfactory = new CarFactory();
+
+let carMixin = {
+    revEngine(){
+        console.log(`The ${this.engine} is doing`);
+    }
+}
+
+const carFactory = new CarFactory();
 const suvFactory = new SuvFactory();
 const autoManufacturer = (type, model)=>{
     switch(type){
@@ -53,6 +60,11 @@ const autoManufacturer = (type, model)=>{
     }
 }
 
-const cx5  = autoManufacturer('suv','cx5');
+Object.assign(Car.prototype, carMixin);
+
+const honda = autoManufacturer('car', 'honda');
+
+
+honda.revEngine();
 
 console.log(cx5);
