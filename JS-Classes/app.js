@@ -1,5 +1,16 @@
+let mixin = {
+    madeIn(){
+        console.log('this car was made in year 2018');
+    }
+}
 
+let carMixin = {
+    __proto__ :mixin,
 
+    madeIn(){
+        super.madeIn();
+    }
+};
 
 sayHi();
 class Car {
@@ -26,6 +37,8 @@ class SUV extends Car {
         this.brand = brand;
         this.wheels = 4;
         this.ac = true;
+
+        Object.assign(this, carMixin);
     }
 
     myBrand(){
@@ -38,7 +51,7 @@ const suv  = new SUV(4,'v5','grey','mazda',)
 const civic = new Car(2,'v4', 'blue')
 console.log(cx5);
 console.log(civic);
-console.log(suv);
+console.log(suv.madeIn());
 console.log(suv.myBrand());
 console.log(cx5.carStats());
 console.log(Car.totalDoors(cx5, civic));
