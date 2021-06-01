@@ -89,7 +89,10 @@
 			// if the clicked tab does not have the class 'selected', then location of 'selected' class must be added
 			//   to the clicked element and removed from its siblings
 			category = $(this).attr('id');
-			$('.options div').removeClass('selected');
+			//$('.options div').removeClass('selected');
+			document.querySelectorAll('.options div').forEach(function(el){
+				el.classList.remove('selected');
+			})
 			$(this).addClass('selected');
 		} 
 
