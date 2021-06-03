@@ -66,8 +66,8 @@
 
 		//ReactDOM.render(<Forecast {...state} />, $into);
 
-		ReactDOM.render(<Forecast {...state} />, into);
-
+		//ReactDOM.render(<Forecast {...state} />, into);
+/*
 		function Forecast(props) {
 			return (
 				<div>
@@ -76,7 +76,11 @@
 				</div>
 			)
 		}
-
+*/
+		let container = document.createElement('div');
+		let cityPara = document.createElement('p');
+		let conditionsPara = document.createElement('p');
+		let iconImage = document.createElement('img');
 		updateActivityList();
 	}
 
@@ -129,8 +133,8 @@
 
 		//ReactDOM.render(<Activities {...state} />, $into);
 
-		ReactDOM.render(<Activities {...state} />, into);
-
+		//ReactDOM.render(<Activities {...state} />, into);
+/*
 		function Activities(props) {
 			const activitiesList = props.activities.map(function(activity, index) {
 				return <li key={index}>{activity}</li>
@@ -141,7 +145,16 @@
 				</div>
 			)
 		}
+*/
+		let activitiesContainer = document.createElement('div');
+		let list  = document.createElement('ul');
+		state.activities.forEach(function(){
+			let listItem=document.createElement('li');
+			console.log(listItem);
+		});
 
+		console.log(activitiesContainer);
+		console.log(list);
 		$('.results').slideDown(300);
 	}
 
