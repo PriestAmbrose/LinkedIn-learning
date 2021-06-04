@@ -178,7 +178,8 @@
 		}
 
 		
-		$('.results').slideDown(300);
+		//$('.results').slideDown(300);
+		document.querySelector('.results').classList.add('open');
 	}
 
 	// handle ajax failure
