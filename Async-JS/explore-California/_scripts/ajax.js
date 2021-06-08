@@ -19,9 +19,6 @@ function get(url){
 
 function failHandler(status){
     console.log(status);
-    const weatherDiv = document.querySelector('#weather');
-    weatherDiv.classList.remove('hidden');
-
 }
 
 function tempToF(kelvin) {
@@ -46,7 +43,6 @@ function successHandler(data) {
         </p>
     `
     weatherDiv.innerHTML = weatherFragment;
-    weatherDiv.classList.remove('hidden');
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -61,5 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .catch(function(status){
             failHandler(status);
+        })
+        .finally(function(){
+            const weatherDiv = document.querySelector('#weather');
+            weatherDiv.classList.remove('hidden');
         });
 });
