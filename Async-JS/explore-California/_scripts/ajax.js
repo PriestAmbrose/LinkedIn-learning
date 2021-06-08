@@ -50,12 +50,16 @@ function successHandler(data) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const apiKey = '322692ec6600b7c5b6f5e33a6a844eb8';
+    const apiKey = ''//'322692ec6600b7c5b6f5e33a6a844eb8';
     const url = 'https://api.openweathermap.org/data/2.5/weather?q=los+angeles&APPID=' + apiKey;
     // add get() function call here
     //get(url, successHandler, failHandler);
     //console.log(get(url));
-    get(url).then(function(response){
-        successHandler(response);
-    });
+    get(url)
+        .then(function(response){
+            successHandler(response);
+        })
+        .catch(function(status){
+            failHandler(status);
+        });
 });
