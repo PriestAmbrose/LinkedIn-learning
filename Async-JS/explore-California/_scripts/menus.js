@@ -19,7 +19,7 @@ function enableMenus() {
           $(this)
             .find('ul')
             .stop(true, true)
-            .slideDown('fast');
+            //.slideDown('fast');
         });
         $(this).mouseleave(function() {
           $(this)
