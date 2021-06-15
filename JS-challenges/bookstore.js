@@ -11,18 +11,18 @@ class Book {
     }
 
     set setAmount(newAmount){
-        this.Amount=newAmount;
+        this.numCopies=newAmount;
     }
 
     getAvailability(){
         switch(true){
-            case getAmount===0:
+            case this.getAmount===0:
                 return "out of stock";
                 break;
-            case getAmount>0 && getAmount<10:
+            case this.getAmount>0 && this.getAmount<10:
                 return "low stock";
                 break;
-            case getAmount>=10:
+            case this.getAmount>=10:
                 return "in stock";
                 break;
             default:
@@ -31,14 +31,21 @@ class Book {
     };
 
     sell(numSold=1){
-        if (getAmount>=numSold){
-            setAmount(getAmount-numSold);
+        if (this.getAmount>=numSold){
+            this.setAmount=this.getAmount-numSold;
         } else{
-            console.error(getAvailability());
+            console.error(this.getAvailability());
         }
     }
 
     restock(numCopies=5){
-        setAmount(getAmount+numCopies);
+        this.setAmount=this.getAmount+numCopies;
     }
 }
+
+const HungerGames = new Book("Hunger Games", "Suzane Collins", 123919, 5);
+console.log(HungerGames.getAvailability());
+HungerGames.restock(12);
+console.log(HungerGames.getAvailability());
+HungerGames.sell(17);
+console.log(HungerGames.getAvailability());
