@@ -7,7 +7,18 @@ function Movie(title, director, genre, releaseYear,rating){
 }
 
 Movie.prototype.getOverview = function(){
-    console.log(`${this.title}, a ${this.genre} film directed by ${this.director}`
+    console.log(`${this.title}, a ${this.genre} film directed by ${this.director}`+
                 `was released in ${this.releaseYear}. It recieved a rating of ${this.rating}.`);
 }
 
+const Spiderman = new Movie("Spiderman", "Sam Raimi", "Action", 2002, 87);
+const Batman = new Movie(
+    "The Dark Knight",
+    "Christopher Nolan",
+    "Action",
+    2000,
+    83
+);
+
+Spiderman.getOverview();
+Batman.getOverview();
