@@ -1,0 +1,87 @@
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background: black;
+  font-family: palatino, georgia, times, serif;
+}
+
+.table {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  max-width: 90%;
+  background: #030;
+  border: 3px #501000 solid;
+  color: white;
+  padding: 3em;
+}
+
+.cards {
+  text-align: center;
+}
+
+.card {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 7rem;
+  width: 4.5rem;
+  background: white;
+  border: 2px solid #900;
+  border-radius: 0.1em;
+  color: #900;
+  text-align: center;
+  margin: 0.5em;
+  padding-top: 0.5rem;
+
+  font-size: 2rem;
+}
+
+.suit {
+  font-size: 3rem;
+}
+
+.card.black {
+  border-color: black;
+  color: black;
+}
+
+.empty {
+  opacity: 0.5;
+}
+
+.actions {
+  margin: 2em 0 0;
+  text-align: center;
+}
+
+select {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 0.2em;
+  font-size: 1.5rem;
+  padding: 0.2em 0.5em;
+  margin-left: 0.25em;
+}
+
+button {
+  background: white;
+  color: black;
+  border: 1px solid black;
+  border-radius: 0.2em;
+  font-family: inherit;
+  font-size: 1.5rem;
+  padding: 0.2em 0.5em;
+  cursor: pointer;
+
+  margin-right: 0.5em;
+}
+
+button:hover,
+button:focus {
+  background: white;
+}

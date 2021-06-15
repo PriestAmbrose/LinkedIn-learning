@@ -9,8 +9,32 @@
     <div id="speakerbox">
         <div id="carousel"></div>
     </div>
+
+    <script id="speakerstpl" type="text/template">
+    {{#speakers}}
+    <div class ="speaker">
+        <img src="images/{{shortname}}_tn.jpg" alt="Photo of {{name}}"/>
+        <h3>{{name}}</h3>
+        <h4>{{reknown}}</h4>
+        <p>{{bio}}</p>
+    </div>
+    {{/speakers}}
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.cycle/3.0.3/jquery.cycle.all.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
-</body>
-</html>
+
+    <script type="text/javascript">
+
+        $(function() {
+        
+            $.getJSON('data.json', function(data) {
+                var template = $('#speakerstpl').html();
+                var html = Mustache.to_html(template, data);
+                $('#carousel').html(html);
+            }); //getJSON
+        }); //function
+        
+        </script>
+        </body>
+        </html>
