@@ -1,7 +1,7 @@
 jQuery(function () {
   "use strict";
   // Don't do anything here if cookie is set
-  if (window.sessionStorage.getItem("modalViewed") === true) return;
+  if (window.sessionStorage.getItem("modalViewed") === "true") return;
 
   var modalContainer = document.querySelector(".modal--container");
 
@@ -27,9 +27,10 @@ jQuery(function () {
 
   // Close the modal when clicking Close
   document.addEventListener("click", function (evt) {
-    evt.preventDefault();
-
-    hideModal();
+    if (evt.target==document.querySelector("button.modal--close")){
+      evt.preventDefault();
+      hideModal();
+    }
   });
 
   function hideModal() {
@@ -37,8 +38,12 @@ jQuery(function () {
 
     // when browser compatibility is better, could use `transitionend` event here
     // for now, fire this with a timeout
-    setTimeout(function () {
-      modalContainer.classList.remove("open");
-    }, 100);
+    //setTimeout(function () {
+      modalContainer.classList.remove("visible");
+
+      setTimeout(function () {
+        modalContainer.classList.remove("open");
+      }, 2100);
+    //}, 2000);
   }
 });
