@@ -40,7 +40,7 @@
     function redeal(evt) {
       evt.preventDefault();
 
-      const newHand = shuffleAndDeal(cribbageHandSize);
+      const newHand = shuffleAndDeal(handSize);
 
       setHand(newHand);
     }
@@ -48,6 +48,7 @@
     // Handles the change event for hand size selector
     function changeHandSize(evt) {
       setHandSize(parseInt(evt.target.value, 10));
+      debugger;
     }
 
     // Get all the card components representing the hand in state
@@ -131,14 +132,14 @@
   function getPip(suit) {
     switch (suit) {
       case "h":
-        return "♥";
+        return "h";
       case "d":
-        return "♦";
+        return "d";
       case "c":
-        return "♣";
+        return "c";
       case "s":
       default:
-        return "♠";
+        return "s";
     }
   }
 
@@ -154,7 +155,7 @@
 
     deck = shuffle(deck);
 
-    return deck.slice(handSize);
+    return deck.slice(0,handSize);
   }
 
   /**
