@@ -1,9 +1,10 @@
 // add global variable containing XHR object here
 
-let httpRequest = new XMLHttpRequest();
+
 // add get() function here
 function get(url){
     return new Promise(function(resolve,reject){
+        let httpRequest = new XMLHttpRequest();
         httpRequest.open('GET', url);
         httpRequest.onload = function(){
             if (httpRequest.status === 200){
