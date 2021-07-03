@@ -49,7 +49,7 @@ function successHandler(data) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    const apiKey = '322692ec6600b7c5b6f5e33a6a844eb8';
+    const apiKey = ''//'322692ec6600b7c5b6f5e33a6a844eb8';
     const weatherDiv = document.querySelector('#weather');
     const locations = [
         'los+angeles,us',
@@ -68,22 +68,43 @@ document.addEventListener('DOMContentLoaded', function() {
     //get(url, successHandler, failHandler);
     //console.log(get(url));
     //get(url)
-    Promise.all([get(urls[0]), get(urls[1]), get(urls[2]), get(urls[3])])
-        .then(function(responses){
-            console.log(responses);
-            return responses.map(function(response){
-                console.log(response);
-                return successHandler(response);
-            })
-        })
-        .then(function(literals){
-            weatherDiv.innerHTML = `<h1>Weather</h1>${literals.join('')}`;
-        })
-        .catch(function(status){
-            failHandler(status);
-        })
-        .finally(function(){
+    // Promise.all([get(urls[0]), get(urls[1]), get(urls[2]), get(urls[3])])
+    //     .then(function(responses){
+    //         console.log(responses);
+    //         return responses.map(function(response){
+    //             console.log(response);
+    //             return successHandler(response);
+    //         })
+    //     })
+    //     .then(function(literals){
+    //         weatherDiv.innerHTML = `<h1>Weather</h1>${literals.join('')}`;
+    //     })
+    //     .catch(function(status){
+    //         failHandler(status);
+    //     })
+    //     .finally(function(){
             
-            weatherDiv.classList.remove('hidden');
-        });
+    //         weatherDiv.classList.remove('hidden');
+    //     });
+
+    (async function(){
+        try {
+            let responses = [];
+            responses.push(await get(urls[0]));
+            responses.push(await get(urls[1]));
+            responses.push(await get(urls[2]));
+            responses.push(await get(urls[3]));
+            let literals = responses.map(function(response){
+                return successHandler(response);
+            });
+            weatherDiv.innerHTML = `<h1>Weather</h1>${literals.join('')}`;
+            
+        }
+        catch (status){
+            failHandler(status);
+        }
+        finally {
+            weatherDiv.classList.remove('hidden');    
+        }
+    })();
 });
