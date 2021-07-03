@@ -59,3 +59,11 @@ const applyFilter = (filter, level, image) => {
   console.log("Filtering: %d ms", totalTime);
   return results;
 };
+
+this.addEventListener('message', function(e){
+  // this.console.log('Message received from main script:');
+  // this.console.log(e.data);
+  const workerResult = applyFilter(e.data.filter, e.data.level, e.data.image);
+  //this.console.log(workerResult);
+  this.postMessage(workerResult)
+})
