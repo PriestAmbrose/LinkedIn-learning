@@ -2,7 +2,12 @@
 
 const zipUrl='https://us-street.api.smartystreets.com/street-address?key=102472014738500410';
 const parkUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=A38z0Bhk602hkKEXLwIl36d41ki9WdUx7m08X8Wo'
-
+const smartyInit = {
+    header: {
+        'Content-Type':'application/json',
+        Host: 'us-street.api.smartystreets.com',
+    },
+}
 const addressField = document.querySelector('#address'); //reference to input box
 const cityField = document.querySelector('#city');
 const stateField = document.querySelector('#state');
@@ -63,11 +68,13 @@ const handleErrors = function(response){
     return response.json();
 }
 
-const createRequest = function(url, succeed, fail){
-    fetch(url)
+const createRequest = function(url, succeed, fail, init){
+    fetch(url, init)
         .then((response)=>handleErrors(response))
-        .then((data)=>succeed(data));
-}
+        .then((data)=>succeed(data))
+        .catch((error)=>fail(error));
+};
+
 
 const checkCompletion = function(){
     if (addressField.value !== '' &&  
@@ -77,7 +84,7 @@ const checkCompletion = function(){
                 '&street=' + addressField.value + 
                 '&city=' + cityField.value + 
                 '&state=' + stateField.value;
-            createRequest(requestUrl,updateUISuccess,updateUIError);
+            createRequest(requestUrl,updateUISuccess,updateUIError, smartyInit);
     }
 }
 
