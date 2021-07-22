@@ -1,7 +1,9 @@
 'use strict';
 
-const zipUrl='https://us-street.api.smartystreets.com/street-address?key=102472014738500410';
-const parkUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=A38z0Bhk602hkKEXLwIl36d41ki9WdUx7m08X8Wo'
+//const zipUrl='https://us-street.api.smartystreets.com/street-address?key=102472014738500410';
+//const parkUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=A38z0Bhk602hkKEXLwIl36d41ki9WdUx7m08X8Wo';
+const zipUrl='https://exp-cal-prox.herokuapp.com/street/street-address?';
+const parkUrl = 'https://exp-cal-prox.herokuapp.com/nps/api/v1/parks?stateCode=ca';
 const parksFallback = {
     "url": "https://www.nps.gov/alca/index.htm",
     "fullName": "Alcatraz Island",
@@ -94,7 +96,7 @@ const checkCompletion = function(){
         cityField.value !== '' && 
         stateField !== ''){
             const requestUrl = zipUrl + 
-                '&street=' + addressField.value + 
+                'street=' + addressField.value + 
                 '&city=' + cityField.value + 
                 '&state=' + stateField.value;
             createRequest(requestUrl,updateUISuccess,updateUIError, smartyInit);
