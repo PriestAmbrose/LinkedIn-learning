@@ -3,24 +3,25 @@ var proxy = require('http-proxy-middleware');
 
 // proxy middleware options
 var filter = function (pathname, req) {
+  return true;
   // replace www.myapp.example with origin(s) that your content will be served from
-  return (req.headers.origin === 'https://www.myapp.example');
+  //return (req.headers.origin === 'https://www.myapp.example');
   // multiple origin version:
   // return ((req.headers.origin === 'http://www.myapp.example') || (req.headers.origin === 'https://www.myapp.example'));   
 };
 
 var apiOptions = {
   // replace api.datasource.example with the url of your target host
-  target: 'https://api.datasource.example',
+  target: 'https://developer.nps.gov',
   changeOrigin: true, // needed for virtual hosted sites like Heroku
   pathRewrite: {
-    '/': '/', // remove endpoint from request path ('^/api/': '/')
+    '^/nps': '/', // remove endpoint from request path ('^/api/': '/')
   },
   onProxyReq: (proxyReq) => {
     // append key-value pair for API key to end of path
     // using KEYNAME provided by web service
     // and KEYVALUE stored in Heroku environment variable
-    proxyReq.path += ('&KEYNAME=' + process.env.KEYVALUE);
+    proxyReq.path += ('&api_key=' + process.env.NPS_APIKEY);
   },
   logLevel: 'debug' // verbose server logging
 };
@@ -31,6 +32,6 @@ var apiProxy = proxy(filter, apiOptions);
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 
-app.use('/api', apiProxy);
+app.use('/nps', apiProxy);
 
 app.listen(app.get('port'));
