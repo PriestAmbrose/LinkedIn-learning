@@ -2,6 +2,11 @@
 
 const zipUrl='https://us-street.api.smartystreets.com/street-address?key=102472014738500410';
 const parkUrl = 'https://developer.nps.gov/api/v1/parks?stateCode=ca&api_key=A38z0Bhk602hkKEXLwIl36d41ki9WdUx7m08X8Wo'
+const parksFallback = {
+    "url": "https://www.nps.gov/alca/index.htm",
+    "fullName": "Alcatraz Island",
+    "description": "Alcatraz reveals stories of American incarceration, justice, and our common humanity. This small island was once a fort, a military prison, and a maximum security federal penitentiary. In 1969, the Indians of All Tribes occupied Alcatraz for 19 months in the name of freedom and Native American civil rights. We invite you to explore Alcatraz's complex history and natural beauty.",
+}
 const smartyInit = {
     header: {
         'Content-Type':'application/json',
@@ -24,14 +29,16 @@ const updateUISuccess = function(parsedData){
     const zip = parsedData[0].components.zipcode;
     const plus4 = parsedData[0].components.plus4_code;
     zipField.value =zip+'-'+plus4;
+
 }
 
 const updateParkSuccess = function(parsedData){
     
-    parkThumb.src='https://www.nps.gov/common/commonspot/templates/assetsCT/images/branding/logo.png';
-    //const parsedData = JSON.parse(data);
     console.log(parsedData);
     const parkData = parsedData.data[Math.floor(Math.random() * parsedData.total)];
+    
+    parkThumb.src='https://www.nps.gov/common/commonspot/templates/assetsCT/images/branding/logo.png';
+    //const parsedData = JSON.parse(data);
     parkName.textContent = parkData.fullName;
     parkName.href = parkData.url;
     parkDescription.textContent=parkData.description;
@@ -41,6 +48,12 @@ const updateParkSuccess = function(parsedData){
 
 const updateUIError = function(error){
     console.log(error);
+
+    parkThumb.src='https://www.nps.gov/common/commonspot/templates/assetsCT/images/branding/logo.png';
+    parkName.textContent = parksFallback.fullName;
+    parkName.href = parksFallback.url;
+    parkDescription.textContent=parksFallback.description;
+    specials.classList.remove('hidden');
 }
 // const responseMethod = function(httpRequest,success,fail){
 //     if(httpRequest.readyState === 4){
@@ -63,7 +76,7 @@ const updateUIError = function(error){
 
 const handleErrors = function(response){
     if(!response.ok){
-        throw (response.status + ': ' + response.statusText);
+        throw new Error((response.status + ': ' + response.statusText));
     }
     return response.json();
 }
